@@ -16,6 +16,7 @@ class GridFSFile(object):
         self.length = self.f.length
         self.upload_date = self.f.upload_date
         self.md5 = self.f.md5
+        self.parentId = self.f.parentId if getattr(self.f,'parentId') else None
 
     def get_metadata(self):
         result = {
@@ -25,6 +26,8 @@ class GridFSFile(object):
         }
         if self.filename is not None:
             result['filename'] = self.filename
+        if self.parentId is not None:
+            result['parentId'] = self.parentId
         return result
 
     def __len__(self):
